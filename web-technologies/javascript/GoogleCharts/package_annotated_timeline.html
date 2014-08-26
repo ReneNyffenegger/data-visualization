@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+
+    <script type='text/javascript'>
+
+      google.load('visualization', '1', {'packages':['annotatedtimeline']});
+
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('date'  , 'X'    );
+        data.addColumn('number', 'Y 1'  );
+        data.addColumn('number', 'Y 2'  );
+        data.addColumn('string', 'Title');
+
+        var dt_start = new Date (2010, 0, 1);
+        for (var x = 0; x<1000; x++) {
+
+           var title = "";
+
+           if (! (x % 200)) {
+              title = "Foo " + (x/200);
+           }
+
+           var dt = new Date(dt_start);
+           dt.setDate(dt.getDate() + x);
+
+           data.addRows( [ [ dt,
+                             Math.sin( x / 700 - 0.1) + Math.random() / 10 - 0.05,
+                             Math.sin( x / 400 - 0.4) + Math.random() /  8 - 0.04,
+                             title ] ] );
+
+        }
+
+        var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart'));
+        chart.draw(data, {displayAnnotations: true});
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id='chart' style='width: 1000px; height: 500px;'></div>
+  </body>
+</html>
+
