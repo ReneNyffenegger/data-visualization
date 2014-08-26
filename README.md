@@ -18,4 +18,4 @@ interactive environments across platforms.
 
 ### springy.js
 
-[springy](
+[springy](https://github.com/dhotson/springy): A force directed graph layout algorithm in JavaScript.
