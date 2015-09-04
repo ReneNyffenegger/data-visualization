@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <title>springy.js circle</title>
+<body>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="springy/springy.js"  ></script>
+<script src="springy/springyui.js"></script>
+<script>
+
+  $(function(){
+
+    var node_count = 50;
+    var prime      = 13;
+
+    var graph = new Springy.Graph();
+  
+    var nodes = {};
+    var i;
+
+  
+    for (i=0; i<node_count; i++) {
+      nodes[i] = graph.newNode({label: i});
+    }
+  
+    for (i=0; i<node_count; i++) {
+      graph.newEdge(nodes[ ( i   *prime) % node_count],
+                    nodes[ ((i+1)*prime) % node_count]);
+    }
+  
+    var springy = window.springy = jQuery('#springydemo').springy({
+      graph: graph,
+      nodeSelected: function(node){
+        console.log('Node selected: ' + JSON.stringify(node.data));
+      }
+    });
+
+  });
+</script>
+
+<canvas id="springydemo" width="640" height="480" />
+</body>
+</html>
+

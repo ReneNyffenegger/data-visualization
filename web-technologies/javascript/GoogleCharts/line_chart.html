@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript">
+
+      google.load("visualization", "1", {packages:["corechart"]});
+
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data_array = [ ['x', 'Y 1', 'Y 2'] ];
+
+        for (var x=0; x < 100; x++) {
+
+            data_array.push( [ x , 
+                               Math.sin( x /  70 - 0.1) + Math.random() / 10 - 0.05, 
+                               Math.sin( x /  40 - 0.4) + Math.random() /  8 - 0.04 ]);
+
+        }
+
+
+        var data = google.visualization.arrayToDataTable(data_array);
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));
+
+        chart.draw(data, {title: "The foo and the bar"});
+      }
+
+    </script>
+  </head>
+  <body>
+    <div id="chart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
