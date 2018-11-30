@@ -56,34 +56,33 @@ public sub main() ' {
 
     dataSeries.applyDataLabels
 
-
-    for ptNo = 1 to rows
+    for ptNo = 1 to rows ' {
       '
       ' Iterate over data points in order to
       ' format each of them:
       '
-      set dataPoint = dataPoints(ptNo)
-    dataPoint.dataLabel.text = sh.cells(ptNo + firstRow - 1, 3) ' What is the difference to dataLabel.caption ?
+        set dataPoint = dataPoints(ptNo)
+        dataPoint.dataLabel.text = sh.cells(ptNo + firstRow - 1, 3) ' What is the difference to dataLabel.caption ?
 
-     dataPoint.markerStyle           = xlMarkerStyleCircle
+        dataPoint.markerStyle = xlMarkerStyleCircle
 
-    dim pointColor as long
-    pointColor = sh.cells(ptNo + firstRow -1, 3).interior.color
+        dim pointColor as long
+        pointColor = sh.cells(ptNo + firstRow -1, 3).interior.color
 
-    '
-    ' Setting the points's color. When using RGB values, this can be done with
-    ' the .marker*groundColor property. Alterntively, with the
-    '.marker*groundColorIndex, a color could be cdhosen from an index.
-      dataPoint.markerBackgroundColor = pointColor
-     dataPoint.markerForegroundColor = rgb(20, 20, 20)
+      '
+      ' Setting the points's color. When using RGB values, this can be done with
+      ' the .marker*groundColor property. Alterntively, with the
+      '.marker*groundColorIndex, a color could be cdhosen from an index.
+        dataPoint.markerBackgroundColor = pointColor
+        dataPoint.markerForegroundColor = rgb(20, 20, 20)
 
-    ' Set point and text size
-      dim pointSize as long
-    pointSize = sh.cells(ptNo + firstRow -1, 4)
+      ' Set point and text size
+        dim pointSize as long
+        pointSize = sh.cells(ptNo + firstRow -1, 4)
 
-     dataPoint.markerSize = pointSize
-    dataPoint.dataLabel.format.textFrame2.textRange.font.size = pointSize
-    next
+        dataPoint.markerSize = pointSize
+        dataPoint.dataLabel.format.textFrame2.textRange.font.size = pointSize
+    next ' }
 
   '
   ' Adjust axes.
